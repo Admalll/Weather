@@ -11,9 +11,9 @@ final class LoginViewController: UIViewController {
 
     //MARK: - IBOutlets
 
-    @IBOutlet weak var loginTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var mainScrollView: UIScrollView!
+    @IBOutlet private weak var loginTextField: UITextField!
+    @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet private weak var mainScrollView: UIScrollView!
 
     //MARK: - UIViewController
 
@@ -26,6 +26,33 @@ final class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        setupNotifications()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        disableNotifications()
+    }
+
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        super.shouldPerformSegue(withIdentifier: identifier, sender: sender)
+        return checkLoginInfo()
+    }
+
+    //MARK: - Private methods
+
+    private func checkLoginInfo() -> Bool {
+        guard let login = loginTextField.text, let password = passwordTextField.text else { return false }
+        if login == "admin" && password == "123456" {
+            return true
+        } else {
+            showErrorAlert(alertText: "Ошибка", alertMessage: "Пользователь не найден")
+            return false
+        }
+    }
+
+    private func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
                                                name: UIResponder.keyboardWillShowNotification, object: nil)
 
@@ -33,15 +60,12 @@ final class LoginViewController: UIViewController {
                                                name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    private func disableNotifications() {
         NotificationCenter.default.removeObserver(self, name:
                                                     UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name:
                                                     UIResponder.keyboardWillHideNotification, object: nil)
     }
-
-    //MARK: - Private methods
 
     private func setupView() {
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
@@ -49,8 +73,8 @@ final class LoginViewController: UIViewController {
     }
 
     @objc private func keyboardWillShow(notification: Notification) {
-        let info = notification.userInfo! as NSDictionary
-        let keyboardSize = (info.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
+        guard let info = notification.userInfo as NSDictionary? else { return }
+        guard let keyboardSize = (info.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue)?.cgRectValue.size else { return }
         let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
 
         mainScrollView.contentInset = contentInsets
@@ -68,8 +92,6 @@ final class LoginViewController: UIViewController {
     //MARK: - IBActions
 
     @IBAction private func loginButtonTapped(_ sender: UIButton) {
-        guard let login = loginTextField.text, let password = passwordTextField.text else { return }
-        login == "admin" && password == "123456" ? print("успешная авторизация") : print("неуспешная авторизация")
+
     }
 }
-
