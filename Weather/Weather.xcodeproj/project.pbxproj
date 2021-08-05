@@ -20,6 +20,8 @@
 		F5EA5C0F26B82552001A7535 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5EA5C0D26B82552001A7535 /* Main.storyboard */; };
 		F5EA5C1126B82554001A7535 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5EA5C1026B82554001A7535 /* Assets.xcassets */; };
 		F5EA5C1426B82554001A7535 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5EA5C1226B82554001A7535 /* LaunchScreen.storyboard */; };
+		F5EDE65C26BBF07200695CE3 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EDE65B26BBF07200695CE3 /* GradientView.swift */; };
+		F5EDE65E26BBF6F000695CE3 /* WeekDayPickerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EDE65D26BBF6F000695CE3 /* WeekDayPickerControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		F5EA5C1026B82554001A7535 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F5EA5C1326B82554001A7535 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F5EA5C1526B82554001A7535 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5EDE65B26BBF07200695CE3 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		F5EDE65D26BBF6F000695CE3 /* WeekDayPickerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDayPickerControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,8 @@
 			children = (
 				F51E9AAD26BA98EE00B1E389 /* Cells */,
 				F5EA5C0D26B82552001A7535 /* Main.storyboard */,
+				F5EDE65B26BBF07200695CE3 /* GradientView.swift */,
+				F5EDE65D26BBF6F000695CE3 /* WeekDayPickerControl.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -200,6 +206,8 @@
 			files = (
 				F51E9AB526BAA64500B1E389 /* WeatherCollectionViewController.swift in Sources */,
 				F51E9AB326BAA08600B1E389 /* MyCitiesTableViewCell.swift in Sources */,
+				F5EDE65E26BBF6F000695CE3 /* WeekDayPickerControl.swift in Sources */,
+				F5EDE65C26BBF07200695CE3 /* GradientView.swift in Sources */,
 				F5EA5C0C26B82552001A7535 /* LoginViewController.swift in Sources */,
 				F5EA5C0826B82552001A7535 /* AppDelegate.swift in Sources */,
 				F51E9AB126BAA07400B1E389 /* MyCitiesTableViewController.swift in Sources */,
