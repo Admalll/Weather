@@ -22,6 +22,7 @@
 		F5EA5C1426B82554001A7535 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5EA5C1226B82554001A7535 /* LaunchScreen.storyboard */; };
 		F5EDE65C26BBF07200695CE3 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EDE65B26BBF07200695CE3 /* GradientView.swift */; };
 		F5EDE65E26BBF6F000695CE3 /* WeekDayPickerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EDE65D26BBF6F000695CE3 /* WeekDayPickerControl.swift */; };
+		F5EDE69D26C17B6B00695CE3 /* WeatherLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EDE69C26C17B6B00695CE3 /* WeatherLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		F5EA5C1526B82554001A7535 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5EDE65B26BBF07200695CE3 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		F5EDE65D26BBF6F000695CE3 /* WeekDayPickerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDayPickerControl.swift; sourceTree = "<group>"; };
+		F5EDE69C26C17B6B00695CE3 /* WeatherLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				F5EA5C0D26B82552001A7535 /* Main.storyboard */,
 				F5EDE65B26BBF07200695CE3 /* GradientView.swift */,
 				F5EDE65D26BBF6F000695CE3 /* WeekDayPickerControl.swift */,
+				F5EDE69C26C17B6B00695CE3 /* WeatherLayout.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				F5EA5C0A26B82552001A7535 /* SceneDelegate.swift in Sources */,
 				F597C81426B96B4D00331CDF /* UIViewController+Alert.swift in Sources */,
 				F51E9AAF26BA990300B1E389 /* AllCitiesTableViewCell.swift in Sources */,
+				F5EDE69D26C17B6B00695CE3 /* WeatherLayout.swift in Sources */,
 				F51E9AAC26BA98DE00B1E389 /* AllCitiesTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
