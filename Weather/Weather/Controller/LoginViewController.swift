@@ -11,10 +11,14 @@ final class LoginViewController: UIViewController {
 
     //MARK: - IBOutlets
 
+    @IBOutlet private weak var passwordLabel: UILabel!
     @IBOutlet private weak var loginLabel: UILabel!
     @IBOutlet private weak var loginTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var mainScrollView: UIScrollView!
+    @IBOutlet weak var authButton: UIButton!
+
+    private var interactiveAnimator: UIViewPropertyAnimator!
 
     //MARK: - UIViewController
 
@@ -45,21 +49,63 @@ final class LoginViewController: UIViewController {
 
     //MARK: - Private methods
 
+    private func setupAnimation() {
+        let offset = abs(self.loginLabel.frame.midY -
+                            self.passwordLabel.frame.midY)
+        self.loginLabel.transform = CGAffineTransform(translationX: 0, y: offset)
+        self.passwordLabel.transform = CGAffineTransform(translationX: 0, y:
+                                                            -offset)
+
+        UIView.animateKeyframes(withDuration: 1,
+                                delay: 1,
+                                options: .calculationModeCubicPaced,
+                                animations: {
+                                    UIView.addKeyframe(withRelativeStartTime: 0,
+                                                       relativeDuration: 0.5,
+                                                       animations: {
+                                                        self.loginLabel.transform = CGAffineTransform(translationX: 150, y: 50)
+                                                        self.passwordLabel.transform = CGAffineTransform(translationX: -150, y:
+                                                                                                            -50)
+                                                       })
+                                    UIView.addKeyframe(withRelativeStartTime: 0.5,
+                                                       relativeDuration: 0.5,
+                                                       animations: {
+                                                        self.loginLabel.transform = .identity
+                                                        self.passwordLabel.transform = .identity
+                                                       })
+                                }, completion: nil)
+    }
+
     private func animateLoginField() {
-        self.loginTextField.transform = CGAffineTransform(translationX: -500, y: 0)
-        UIView.animate(withDuration: 1.0) {
-            self.loginTextField.transform = .identity
-        }
+        self.loginLabel.transform = CGAffineTransform(translationX: 0, y:
+                                                        -self.view.bounds.height / 2)
+        let animator = UIViewPropertyAnimator(duration: 1,
+                                              dampingRatio: 0.5,
+                                              animations: {
+                                                self.loginLabel.transform = .identity
+                                              })
+        animator.startAnimation(afterDelay: 1)
     }
 
     private func animateLoginLabel() {
+
         let fadeInAnimation = CABasicAnimation(keyPath: "opacity")
         fadeInAnimation.fromValue = 0
         fadeInAnimation.toValue = 1
-        fadeInAnimation.beginTime = CACurrentMediaTime() + 1
-        fadeInAnimation.fillMode = .backwards
-        fadeInAnimation.duration = 1
-        loginLabel.layer.add(fadeInAnimation, forKey: nil)
+        let scaleAnimation = CASpringAnimation(keyPath: "transform.scale")
+        scaleAnimation.fromValue = 0
+        scaleAnimation.toValue = 1
+        scaleAnimation.stiffness = 150
+        scaleAnimation.mass = 2
+        let animationsGroup = CAAnimationGroup()
+        animationsGroup.duration = 1
+        animationsGroup.beginTime = CACurrentMediaTime() + 1
+        animationsGroup.timingFunction = CAMediaTimingFunction(name:
+                                                                CAMediaTimingFunctionName.easeOut)
+        animationsGroup.fillMode = CAMediaTimingFillMode.backwards
+        animationsGroup.animations = [fadeInAnimation, scaleAnimation]
+        self.loginLabel.layer.add(animationsGroup, forKey: nil)
+        self.passwordLabel.layer.add(animationsGroup, forKey: nil)
 
     }
 
@@ -105,6 +151,34 @@ final class LoginViewController: UIViewController {
     private func setupView() {
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         mainScrollView.addGestureRecognizer(hideKeyboardGesture)
+
+        let recognizer = UIPanGestureRecognizer(target: self, action:
+                                                    #selector(onPan(_:)))
+        self.view.addGestureRecognizer(recognizer)
+    }
+
+    @objc private func onPan(_ recognizer: UIPanGestureRecognizer) {
+        switch recognizer.state {
+        case .began:
+            interactiveAnimator?.startAnimation()
+            interactiveAnimator = UIViewPropertyAnimator(duration: 0.5,
+                                                         dampingRatio: 0.5,
+                                                         animations: {
+                                                            self.authButton.transform = CGAffineTransform(translationX: 0,
+                                                                                                          y: 150)
+                                                         })
+            interactiveAnimator.pauseAnimation()
+        case .changed:
+            let translation = recognizer.translation(in: self.view)
+            interactiveAnimator.fractionComplete = translation.y / 100
+        case .ended:
+            interactiveAnimator.stopAnimation(true)
+            interactiveAnimator.addAnimations {
+                self.authButton.transform = .identity
+            }
+            interactiveAnimator.startAnimation()
+        default: return
+        }
     }
 
     @objc private func keyboardWillShow(notification: Notification) {

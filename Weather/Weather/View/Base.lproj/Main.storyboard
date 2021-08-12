@@ -114,9 +114,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="lBI-0G-uyS"/>
                     <connections>
+                        <outlet property="authButton" destination="g9P-1R-mjg" id="lJP-FK-P8a"/>
                         <outlet property="loginLabel" destination="MQr-dX-kWQ" id="RxE-rg-VPQ"/>
                         <outlet property="loginTextField" destination="VLY-1b-xG4" id="5uh-k2-MuS"/>
                         <outlet property="mainScrollView" destination="YE1-w0-PMR" id="9D3-Te-Pp8"/>
+                        <outlet property="passwordLabel" destination="usF-b9-irP" id="UJX-ni-uQC"/>
                         <outlet property="passwordTextField" destination="ClD-Bq-lrv" id="ah5-EI-e5l"/>
                     </connections>
                 </viewController>
