@@ -11,7 +11,7 @@ final class AllCitiesTableViewController: UITableViewController {
 
     //MARK: Private properties
 
-    var cities = ["Алушта",
+    var cities = ["London",
                   "Феодосия",
                   "Ялта",
                   "Севастополь",

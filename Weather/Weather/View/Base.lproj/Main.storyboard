@@ -304,10 +304,10 @@
             </objects>
             <point key="canvasLocation" x="3324.6376811594205" y="131.91964285714286"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Weather Navigation Controller-->
         <scene sceneID="Xhq-cT-1wG">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QHP-7v-g98" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QHP-7v-g98" customClass="WeatherNavigationController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="M0g-Rn-PkS">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

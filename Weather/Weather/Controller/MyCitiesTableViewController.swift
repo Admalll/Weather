@@ -15,6 +15,11 @@ class MyCitiesTableViewController: UITableViewController {
         super.viewDidLoad()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let vc = segue.destination as? WeatherViewController, let index = tableView.indexPathForSelectedRow?.row else { return }
+        vc.city = cities[index]
+    }
+
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

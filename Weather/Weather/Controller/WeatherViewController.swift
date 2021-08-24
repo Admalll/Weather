@@ -9,8 +9,13 @@ import UIKit
 
 class WeatherViewController: UIViewController {
 
+    var city: String?
+    lazy var service = WeatherAPIService()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        service.getWeather(city: city ?? "Moscow")
     }
 }
 
